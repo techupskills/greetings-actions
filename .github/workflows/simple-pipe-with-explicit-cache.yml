@@ -40,7 +40,7 @@ jobs:
     - if: ${{ steps.cache-gradle.outputs.cache-hit == 'true' }}
       name: Check for cache hit
       run: |
-        echo "Got cache hit on key 
+        echo "Got cache hit on key" 
     
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
