@@ -34,7 +34,7 @@ jobs:
         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
 #        restore-keys: |
 #          ${{ runner.os }}-gradle-
-    - if: ${{ steps.cache-gradle.outputs.cache-hit == true }}
+    - if: ${{ steps.cache-gradle.outputs.cache-hit == 'true' }}
       name: Check for cache hit
       run: |
         echo "Got cache hit on key ${{ steps.cache-gradle.outputs.key }}"
