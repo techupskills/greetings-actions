@@ -26,13 +26,19 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
     - uses: actions/cache@v3
+      id: cache-gradle
       with:
         path: |
           ~/.gradle/caches
           ~/.gradle/wrapper
         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
+#        restore-keys: |
+#          ${{ runner.os }}-gradle-
+    - if: ${{ steps.cache-gradle.outputs.cache-hit == true }}
+      name: Check for cache hit
+      run: |
+        echo "Got cache hit on key ${{ steps.cache-gradle.outputs.key }}"
+    
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
