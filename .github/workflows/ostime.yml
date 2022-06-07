@@ -5,13 +5,13 @@ name: Large file timing
 
 on:
   push:
-    branches: [ main ]
+    branches: [ ostime ]
   workflow_dispatch:
     inputs:
       fileSize:
         description: 'Size of file to create'     
         required: true
-        default: '100000000'
+        default: '100000'
 
 jobs:
 
@@ -31,8 +31,8 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - name: Create large file on macos
-      run: time yes "this is a large file" | head -c ${{ github.event.inputs.fileSize }} > testfile.txt
+#    - name: Create large file on macos
+#      run: time yes "this is a large file" | head -c ${{ github.event.inputs.fileSize }} > testfile.txt
     - name: Clean up
       run: rm testfile.txt
       
