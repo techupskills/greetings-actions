@@ -1,0 +1,39 @@
+# Workflow to demo running on different OS platforms in same workflow
+
+
+name: Large file timing
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      fileSize:
+        description: 'Size of file to create'     
+        required: true
+        default: '100000000'
+
+jobs:
+
+  time-on-linux:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Create large file on linux
+      run: time yes "this is a large file" | head -c ${{ github.event.inputs.fileSize }} > testfile.txt
+    - name: Clean up
+      run: rm testfile.txt
+
+        
+  time-on-mac:
+  
+    runs-on: macos-latest
+
+    steps:
+    - name: Create large file on macos
+      run: time yes "this is a large file" | head -c ${{ github.event.inputs.fileSize }} > testfile.txt
+    - name: Clean up
+      run: rm testfile.txt
+      
+ 
