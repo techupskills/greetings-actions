@@ -22,6 +22,8 @@ jobs:
     steps:
     - name: Create large file on linux
       run: time yes "this is a large file" | head -c ${{ github.event.inputs.fileSize }} > testfile.txt
+    - name: Execute tree
+      run: tree
     - name: Clean up
       run: rm testfile.txt
 
@@ -33,6 +35,8 @@ jobs:
     steps:
 #    - name: Create large file on macos
 #      run: time yes "this is a large file" | head -c ${{ github.event.inputs.fileSize }} > testfile.txt
+    - name: Execute tree
+      run: tree
     - name: Clean up
       run: rm testfile.txt
       
